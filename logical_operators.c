@@ -10,8 +10,10 @@
 int execute_logical_and(char **cmd_argv) {
     int status1 = 0;
     int status2 = 0;
+    pid_t child_pid1, child_pid2;
+    char **cmd_argv2;
 
-    pid_t child_pid1 = fork();
+    child_pid1 = fork();
     if (child_pid1 == -1) {
         perror("Fork failed");
         return -1;
@@ -25,9 +27,9 @@ int execute_logical_and(char **cmd_argv) {
     if (status1 != 0) {
         return status1;
     }
-
-    char **cmd_argv2 = cmd_argv + 1;
-    pid_t child_pid2 = fork();
+    cmd_argv2 = cmd_argv + 1;
+    
+    child_pid2 = fork();
     if (child_pid2 == -1) {
         perror("Fork failed");
         return -1;
@@ -49,6 +51,8 @@ int execute_logical_and(char **cmd_argv) {
  */
 int execute_logical_or(char **cmd_argv) {
     int status1 = 0;
+    pid_t child_pid2;
+    char **cmd_argv2;
     int status2 = 0;
 
     pid_t child_pid1 = fork();
@@ -65,9 +69,9 @@ int execute_logical_or(char **cmd_argv) {
     if (status1 == 0) {
         return status1;
     }
+    cmd_argv2 = cmd_argv + 1;
 
-    char **cmd_argv2 = cmd_argv + 1;
-    pid_t child_pid2 = fork();
+    child_pid2 = fork();
     if (child_pid2 == -1) {
         perror("Fork failed");
         return -1;

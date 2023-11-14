@@ -7,7 +7,10 @@ void execute_exit_builtin(char **argv) {
         exit(0);
     }
 
-    int status = atoi(argv[1]);
+    /* Move the declaration to the beginning of the function */
+    int status;
+    /* Convert string to integer */
+    status = atoi(argv[1]);
     exit(status);
 }
 

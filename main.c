@@ -6,16 +6,15 @@
 
 char *previous_dir = NULL;
 
-int main(int argc, char **argv) {
+int main(){
     char *prompt = "(morris) $ ";
     char *lineptr = NULL, *lineptr_copy = NULL;
     size_t n = 0;
+    char *token, *saveptr;
     ssize_t nchars_read;
-    const char *delim = " \n";
     int status = 0;
-    pid_t shell_pid = getpid();
+    char **cmd_argv;
 
-    (void)argc;
 
     while (1) {
         write(1, prompt, strlen(prompt));
@@ -29,7 +28,6 @@ int main(int argc, char **argv) {
         }
         lineptr_copy = replace_variables(lineptr);
 
-        char *token, *saveptr;
         lineptr_copy = strdup(lineptr);
 
         if (lineptr_copy == NULL) {
@@ -59,7 +57,7 @@ int main(int argc, char **argv) {
                                 num_tokens++;
                             }
                         }
-                        char **cmd_argv = malloc((num_tokens + 1) * sizeof(char *));
+                        cmd_argv = malloc((num_tokens + 1) * sizeof(char *));
 
                         if (cmd_argv != NULL) {
                             int i = 0;

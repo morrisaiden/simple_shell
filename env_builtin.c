@@ -6,12 +6,13 @@
 void execute_env_builtin(void)
 {
     extern char **environ;
+    char **env = environ;
     
     if (environ == NULL) {
         perror("Error getting environment");
     }
 
-    for (char **env = environ; *env != NULL; env++) {
+    for (; *env != NULL; env++) {
         printf("%s\n", *env);
     }
 }

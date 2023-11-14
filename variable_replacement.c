@@ -5,7 +5,7 @@
 #include <unistd.h>
 #include <sys/wait.h>
 
-char *append_string(char *result, const char *line, char *start, size_t len, const char *replacement);
+char *append_string(char *result, char *start, size_t len, const char *replacement);
 
 char *replace_variables(char *line, int status) {
     char *result = NULL;
@@ -21,11 +21,11 @@ char *replace_variables(char *line, int status) {
                 int exit_status = WIFEXITED(status) ? WEXITSTATUS(status) : -1;
                 char exit_status_str[10];
                 snprintf(exit_status_str, sizeof(exit_status_str), "%d", exit_status);
-                result = append_string(result, line, start, ptr - start, exit_status_str);
+                result = append_string(result, start, ptr - start, exit_status_str);
             } else if (*ptr == '$') {
                 char shell_pid_str[10];
                 snprintf(shell_pid_str, sizeof(shell_pid_str), "%d", getpid());
-                result = append_string(result, line, start, ptr - start, shell_pid_str);
+                result = append_string(result, start, ptr - start, shell_pid_str);
             }
         }
         ptr++;
@@ -39,7 +39,7 @@ char *replace_variables(char *line, int status) {
     }
 }
 
-char *append_string(char *result, const char *line, char *start, size_t len, const char *replacement) {
+char *append_string(char *result, char *start, size_t len, const char *replacement) {
     size_t current_len = result ? strlen(result) : 0;
     size_t new_len = current_len + len + strlen(replacement);
     result = (char *)realloc(result, new_len + 1);
