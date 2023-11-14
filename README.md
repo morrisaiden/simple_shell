@@ -1,4 +1,8 @@
 Shell Program README
+
+This is a solo project.
+code by Morris Mwai 
+
 This README provides an overview of the "shell" program and the main function within it. The main function serves as the entry point for the program. It accepts command-line arguments and performs various tasks based on the provided input. Below, we'll explain the code, its functionality, and how to use it.
 
 Table of Contents:
@@ -6,8 +10,7 @@ i. Introduction
 ii. Code Explanation
 iii. Usage
 iv. Contributing
-v. License
-vi. Introduction
+v. Introduction
 The "shell" program is a command-line utility designed for various tasks related to interacting with the system, including file manipulation and running commands. The main function is the primary entry point for this program. It handles command-line arguments, performs file operations, and initiates the shell's functionality.
 
 Code Explanation
