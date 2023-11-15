@@ -18,6 +18,8 @@ void execute_setenv_builtin(char **argv);
 void execute_commands_from_file(const char *filename);
 void execute_unsetenv_builtin(char **argv);
 void execute_cd_builtin(char **argv);
+void execute_command(char *command);
+void execute_exit_builtin1(char **argv);
 
 #endif
 

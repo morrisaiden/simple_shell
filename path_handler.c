@@ -14,20 +14,22 @@
  *          the allocated memory.
  */
 char *find_executable(const char *command) {
+    char *path_copy;
     char *path = getenv("PATH");
+    char *token;
 
     if (path == NULL) {
         return NULL;
     }
 
-    char *path_copy = strdup(path);
+    path_copy = strdup(path);
 
     if (path_copy == NULL) {
         perror("Error duplicating PATH");
         return NULL;
     }
 
-    char *token = strtok(path_copy, ":");
+    token = strtok(path_copy, ":");
     while (token != NULL) {
         char *executable = malloc(strlen(token) + strlen(command) + 2);
 
