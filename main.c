@@ -15,6 +15,7 @@ int main(){
     char *lineptr = NULL, *lineptr_copy = NULL;
     size_t n = 0;
     char *token, *saveptr;
+    char buf[1024];
     ssize_t nchars_read;
     int status = 0;
     char **cmd_argv;
@@ -29,6 +30,11 @@ int main(){
         if (lineptr[0] == '#') {
             continue;
         }
+
+	if (access(buf, X_OK) == 0) {
+            execute_command(buf);
+        }
+
         lineptr_copy = replace_variables(lineptr);
 
         lineptr_copy = strdup(lineptr);
