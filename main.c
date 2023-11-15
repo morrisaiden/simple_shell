@@ -6,6 +6,10 @@
 
 char *previous_dir = NULL;
 
+/**
+ * main - where execution begins
+ * all files- all c files are called here
+ */
 int main(){
     char *prompt = "(morris) $ ";
     char *lineptr = NULL, *lineptr_copy = NULL;
