@@ -15,8 +15,7 @@ int main(){
     int status = 0;
     char **cmd_argv;
 
-
-    while (1) {
+   while (1) {
         write(1, prompt, strlen(prompt));
         nchars_read = getline(&lineptr, &n, stdin);
         if (nchars_read == -1) {
@@ -85,6 +84,7 @@ int main(){
                                         free(cmd_argv);
                                         break;
                                     }
+                                    
                                 }
                                 execute_cd_builtin(cmd_argv);
 
@@ -127,6 +127,7 @@ int main(){
 
                 token = strtok_r(NULL, ";", &saveptr);
             }
+            
         }
         free(lineptr_copy);
     }
